@@ -5,19 +5,19 @@
         "scope": "",
         "version": "",
         "mainFile": "index.ts",
-        "rootDir": "src/ui/component-images-app"
+        "rootDir": "ui/component-images-app"
     },
     "example-component": {
         "scope": "",
         "version": "",
         "mainFile": "index.tsx",
-        "rootDir": "src/ui/example-component"
+        "rootDir": "ui/example-component"
     },
     "extensions/component-images": {
         "scope": "",
         "version": "",
         "mainFile": "index.ts",
-        "rootDir": "src/extensions/component-images"
+        "rootDir": "extensions/component-images"
     },
     "$schema-version": "14.9.0"
 }
