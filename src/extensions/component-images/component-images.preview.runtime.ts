@@ -1,4 +1,4 @@
-import { PreviewRuntime, PreviewModule, ModuleFile, RenderingContext } from '@teambit/preview';
+import { PreviewRuntime, PreviewModule } from '@teambit/preview';
 import { PreviewAspect, PreviewPreview } from '@teambit/preview';
 import { ComponentImagesAspect } from './component-images.aspect';
 import { COMPONENT_IMAGES_PREVIEW_ID } from './config';
@@ -10,7 +10,12 @@ export type CustomPreviewTemplateProps = {
 };
 
 export class ComponentImagesPreview {
-  render = (componentId: string, modules: PreviewModule, _includedPreviews: [] /* , _context: RenderingContext */) => {
+  render = (
+    componentId: string,
+    modules: PreviewModule
+    // _includedPreviews: [],
+    //  _context: RenderingContext,
+  ) => {
     // in theory, we could just render whatever preview we want
     // practically, each component could have its own template, with its own technology, especially if the env is customizing it
     // so, we register the template `main.renderTemplatePath()`, and the preview adds it to the webpack bundle as `.mainModule`
