@@ -14,6 +14,7 @@ a workspace showcasing a custom preview aspect
 - types for `AbstractVinyl` (currently getting them from `@teambit/legacy/dist/consumer/component/sources`)
 - using the custom preview in the remote scope
 - sometimes getting `cannot read .postMessage of undefine` error
+- include file name in the preview assets
 
 # Tips
 
