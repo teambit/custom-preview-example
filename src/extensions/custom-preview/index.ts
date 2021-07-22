@@ -2,4 +2,4 @@ export { CustomPreviewAspect as CustomPreiewAspect, CustomPreviewAspect as defau
 
 export type { CustomPreviewMain } from './custom-preview.main.runtime';
 export type { CustomPreviewPreview } from './custom-preview.preview.runtime';
-export type { CustuomPreviewUI } from './custom-preview.ui.runtime';
+export type { CustomPreviewUI } from './custom-preview.ui.runtime';
