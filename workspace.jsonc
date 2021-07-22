@@ -37,7 +37,9 @@
      */
     "packageManager": "teambit.dependencies/pnpm",
     "policy": {
-      "dependencies": {},
+      "dependencies": {
+        "@teambit/preview.ui.component-preview": "0.0.412"
+      },
       "peerDependencies": {
         "@types/react": "17.0.14",
         "@types/react-dom": "17.0.9",
@@ -64,7 +66,6 @@
     // extension configuration here
   },
   // ----------------------------- *
-  
   /**
    * workspace variants allow to set different subsets of configuration for components in your
    * workspace. this is extremely useful for upgrading, aligning and building components with a new
