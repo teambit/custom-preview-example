@@ -1,21 +1,19 @@
 import { PreviewRuntime, PreviewModule, ModuleFile, RenderingContext } from '@teambit/preview';
 import { PreviewAspect, PreviewPreview } from '@teambit/preview';
-import { CustomPreviewAspect, CUSTOM_PREVIEW_ID } from './custom-preview.aspect';
+import { ComponentImagesAspect } from './component-images.aspect';
+import { COMPONENT_IMAGES_PREVIEW_ID } from './config';
 
 export type ImageAssets = string;
 export type CustomPreviewTemplateProps = {
   componentId: string;
   assets: string[];
-  // executionContext: RenderingContext;
 };
 
-export class CustomPreviewPreview {
-  render = (componentId: string, modules: PreviewModule, _includedPreviews: [], context: RenderingContext) => {
+export class ComponentImagesPreview {
+  render = (componentId: string, modules: PreviewModule, _includedPreviews: [] /* , _context: RenderingContext */) => {
     // in theory, we could just render whatever preview we want
     // practically, each component could have its own template, with its own technology, especially if the env is customizing it
     // so, we register the template `main.renderTemplatePath()`, and the preview adds it to the webpack bundle as `.mainModule`
-    //
-    // we might rename it, it should be clearer
 
     const template = modules.mainModule.default;
     const model = this.selectPreviewModel(componentId, modules);
@@ -24,6 +22,7 @@ export class CustomPreviewPreview {
     template(props);
   };
 
+  /** narrow the data needed to render this component from the full list of assets */
   selectPreviewModel = (componentId: string, module: PreviewModule<ImageAssets>) => {
     const id = componentId;
     const images = module.componentMap[id] || [];
@@ -37,10 +36,10 @@ export class CustomPreviewPreview {
   static dependencies = [PreviewAspect];
 
   static async provider([previewPreview]: [PreviewPreview]) {
-    const customPreviewPreview = new CustomPreviewPreview();
+    const customPreviewPreview = new ComponentImagesPreview();
 
     previewPreview.registerPreview({
-      name: CUSTOM_PREVIEW_ID,
+      name: COMPONENT_IMAGES_PREVIEW_ID,
       render: customPreviewPreview.render,
       selectPreviewModel: customPreviewPreview.selectPreviewModel,
 
@@ -52,4 +51,4 @@ export class CustomPreviewPreview {
   }
 }
 
-CustomPreviewAspect.addRuntime(CustomPreviewPreview);
+ComponentImagesAspect.addRuntime(ComponentImagesPreview);

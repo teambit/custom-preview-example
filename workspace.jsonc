@@ -63,7 +63,7 @@
    * bit loads all extensions listed in this file,
    * in addition to the internal ones.
    **/
-  "teambit.teaching/extensions/custom-preview": {
+  "teambit.teaching/extensions/component-images": {
     // extension configuration here
   },
   // ----------------------------- *

@@ -15,6 +15,10 @@ a workspace showcasing a custom preview aspect
 - using the custom preview in the remote scope
 - sometimes getting `cannot read .postMessage of undefine` error
 - include file name in the preview assets
+- consider refactoring some apis:
+  - `previewMain.registerDefinition({ getModuleMap })` -> `getModuleMap` is vague
+  - `PreviewModule` - the names `moduleMap` and `mainModule` are ambiguous. might call them `assets` and `renderer`, respectively.
+  -
 
 # Tips
 
