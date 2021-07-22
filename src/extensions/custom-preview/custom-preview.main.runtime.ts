@@ -3,15 +3,16 @@ import { PreviewAspect, PreviewMain } from '@teambit/preview';
 import { Component, ComponentMap } from '@teambit/component';
 import { DevFilesAspect, DevFilesMain } from '@teambit/dev-files';
 
-// TODO!!
+// TODO
 import type { AbstractVinyl } from '@teambit/legacy/dist/consumer/component/sources';
 
 import { CustomPreviewAspect, CUSTOM_PREVIEW_ID } from './custom-preview.aspect';
 
+// TODO - might add support for regex
 /** files to claim as the extention's dev files */
-const devFilePattern = '**/*.customPreview.*';
+const devFilePattern = '**/*.snapshot.{png,jpeg,jpg,svg}';
 /** file types to include in preview */
-const previewExtentions = new Set(['.js', '.jsx', '.ts', '.tsx']);
+const imageFilePattern = '**/*.{png,jpeg,jpg,svg}';
 
 export class CustomPreviewMain {
   /** list a components dev files */
@@ -22,11 +23,10 @@ export class CustomPreviewMain {
   /** list a components preview files */
   private getPreviewFiles(components: Component[]) {
     return ComponentMap.as<AbstractVinyl[]>(components, (component) => {
-      const devFiles = this.getDevFiles(component);
-
-      const files = devFiles.filter((file) => previewExtentions.has(file.extname));
-
+      const files = component.state.filesystem.byGlob([imageFilePattern]);
       return files;
+
+      // can filter, check against dev files, etc.
     }).filter((componenentFiles) => componenentFiles.length > 0);
   }
 

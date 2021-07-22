@@ -38,6 +38,7 @@
     "packageManager": "teambit.dependencies/pnpm",
     "policy": {
       "dependencies": {
+        "@teambit/base-ui.layout.page-frame": "1.0.0",
         "@teambit/preview.ui.component-preview": "0.0.412"
       },
       "peerDependencies": {

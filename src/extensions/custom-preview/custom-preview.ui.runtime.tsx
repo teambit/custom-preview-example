@@ -1,7 +1,7 @@
 import React from 'react';
 import { UIRuntime } from '@teambit/ui';
 import { ComponentAspect, ComponentUI } from '@teambit/component';
-import { CustomPreviewAspect } from './custom-preview.aspect';
+import { CustomPreviewAspect, CUSTOM_PREVIEW_SUBPATH, CUSTOM_PREVIEW_TAB_NAME } from './custom-preview.aspect';
 import { CustomPreviewPage } from './custom-preview-page';
 
 export class CustomPreviewUI {
@@ -9,8 +9,8 @@ export class CustomPreviewUI {
   static dependencies = [ComponentAspect];
 
   static async provider([componentUI]: [ComponentUI]) {
-    componentUI.registerNavigation({ href: '~custom-preview', children: 'custom-preview' });
-    componentUI.registerRoute({ path: '~custom-preview', children: <CustomPreviewPage /> });
+    componentUI.registerNavigation({ href: CUSTOM_PREVIEW_SUBPATH, children: CUSTOM_PREVIEW_TAB_NAME }, 100);
+    componentUI.registerRoute({ path: CUSTOM_PREVIEW_SUBPATH, children: <CustomPreviewPage /> });
 
     return new CustomPreviewUI();
   }

@@ -2,10 +2,10 @@ import { PreviewRuntime, PreviewModule, ModuleFile, RenderingContext } from '@te
 import { PreviewAspect, PreviewPreview } from '@teambit/preview';
 import { CustomPreviewAspect, CUSTOM_PREVIEW_ID } from './custom-preview.aspect';
 
-export type Asset = any; // TODO
+export type ImageAssets = string;
 export type CustomPreviewTemplateProps = {
   componentId: string;
-  assets: ModuleFile<Asset>;
+  assets: string[];
   // executionContext: RenderingContext;
 };
 
@@ -18,11 +18,20 @@ export class CustomPreviewPreview {
     // we might rename it, it should be clearer
 
     const template = modules.mainModule.default;
+    const model = this.selectPreviewModel(componentId, modules);
 
-    const props: CustomPreviewTemplateProps = { componentId, assets: modules.componentMap };
+    const props: CustomPreviewTemplateProps = { componentId, assets: model };
     template(props);
   };
-  selectPreviewModel = (componentId: string, module: PreviewModule<any>) => {};
+
+  selectPreviewModel = (componentId: string, module: PreviewModule<ImageAssets>) => {
+    const id = componentId;
+    const images = module.componentMap[id] || [];
+
+    // webpack loads images as url strig, and exports it as default
+    const imagesUrls = images.map((asset) => asset.default);
+    return imagesUrls;
+  };
 
   static runtime = PreviewRuntime;
   static dependencies = [PreviewAspect];

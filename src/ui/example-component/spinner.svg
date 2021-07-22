@@ -1,0 +1,16 @@
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" stroke="#7b3795">
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(1 1)" stroke-width="2">
+            <circle stroke-opacity=".5" cx="7" cy="7" r="14"/>
+            <path d="M14,7c0-3.87-3.13-7-7-7">
+                <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    from="0 7 7"
+                    to="360 7 7"
+                    dur="1s"
+                    repeatCount="indefinite"/>
+            </path>
+        </g>
+    </g>
+</svg>

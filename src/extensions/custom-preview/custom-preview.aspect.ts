@@ -5,4 +5,6 @@ export const CustomPreviewAspect = Aspect.create({
   defaultConfig: {},
 });
 
-export const CUSTOM_PREVIEW_ID = 'CustomPreview';
+export const CUSTOM_PREVIEW_ID = 'images';
+export const CUSTOM_PREVIEW_TAB_NAME = 'images';
+export const CUSTOM_PREVIEW_SUBPATH = '~images';

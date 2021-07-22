@@ -1,0 +1,25 @@
+.imagesPreviewApp {
+  font-family: sans-serif;
+}
+
+.imagesPreview {
+  code {
+    display: block;
+    max-width: 100%;
+    overflow: auto;
+
+    margin-bottom: 4px;
+    padding: 4px;
+    background: #ededed;
+    border-radius: 4px;
+  }
+
+  img {
+    max-width: 160px;
+    max-height: 160px;
+  }
+}
+
+.imageDetails {
+  margin-bottom: 16px;
+}
