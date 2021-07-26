@@ -1,4 +1,4 @@
-# custom-preview-example
+# Images preview
 
 This project showcases an `aspect` (bit extension) that presents all the images in a component.
 

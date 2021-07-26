@@ -22,7 +22,7 @@ const imageFilePattern = '**/*.{png,jpeg,jpg,svg}';
 
 export class ComponentImagesMain {
   /** list a components preview files */
-  private getPreviewFiles(components: Component[]) {
+  private selectComponentImages(components: Component[]) {
     return ComponentMap.as<AbstractVinyl[]>(components, (component) => {
       const files = component.state.filesystem.byGlob([imageFilePattern]);
       return files;
@@ -32,7 +32,7 @@ export class ComponentImagesMain {
   }
 
   /** list files to be bundled in the preview */
-  private getModuleMap = async (components: Component[]) => this.getPreviewFiles(components);
+  private getModuleMap = async (components: Component[]) => this.selectComponentImages(components);
 
   static runtime = MainRuntime;
   static dependencies = [PreviewAspect, DevFilesAspect];

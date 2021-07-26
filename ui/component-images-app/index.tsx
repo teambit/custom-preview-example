@@ -5,7 +5,8 @@ import type { CustomPreviewTemplateProps } from '@teambit/teaching.extensions.co
 import { ComponentImagesApp } from './component-images-app';
 
 export default function componentImagesMountPoint(props: CustomPreviewTemplateProps) {
-  ReactDOM.render(<ComponentImagesApp {...props} />, document.getElementById('root'));
+  const mountPoint = document.getElementById('root');
+  ReactDOM.render(<ComponentImagesApp {...props} />, mountPoint);
 }
 
 // don't put react components in this file, or you'll have troubles with hot reloading

@@ -4,7 +4,7 @@
     "component-images-app": {
         "scope": "",
         "version": "",
-        "mainFile": "index.ts",
+        "mainFile": "index.tsx",
         "rootDir": "ui/component-images-app"
     },
     "example-component": {
