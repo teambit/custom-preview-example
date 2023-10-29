@@ -12,26 +12,24 @@ export type CustomPreviewTemplateProps = {
 export class ComponentImagesPreview {
   render = (
     componentId: string,
+    envId: string,
     modules: PreviewModule
     // _includedPreviews: [],
     //  _context: RenderingContext,
   ) => {
-    // in theory, we could just render whatever preview we want
-    // practically, each component could have its own template, with its own technology, especially if the env is customizing it
-    // so, we register the template `main.renderTemplatePath()`, and the preview adds it to the webpack bundle as `.mainModule`
-
-    const template = modules.mainModule.default;
     const model = this.selectPreviewModel(componentId, modules);
+    const mainModule = modules.modulesMap.default;
+    const defaultExports = mainModule.default;
 
     const props: CustomPreviewTemplateProps = { componentId, assets: model };
-    template(props);
+    defaultExports(props);
   };
 
   /** narrow the data needed to render this component from the full list of assets */
-  selectPreviewModel = (componentId: string, module: PreviewModule<ImageAssets>) => {
+  selectPreviewModel = (componentId: any, module: PreviewModule<ImageAssets>) => {
     const id = componentId;
-    const images = module.componentMap[id] || [];
-
+    const images = module.componentMap[id.name] || [];
+    
     // webpack loads images as url strig, and exports it as default
     const imagesUrls = images.map((asset) => asset.default);
     return imagesUrls;
@@ -45,9 +43,8 @@ export class ComponentImagesPreview {
 
     previewPreview.registerPreview({
       name: COMPONENT_IMAGES_PREVIEW_ID,
-      render: customPreviewPreview.render,
+      render: customPreviewPreview.render.bind(customPreviewPreview),
       selectPreviewModel: customPreviewPreview.selectPreviewModel,
-
       // // allow you to get other previews as part of your data
       // include: ['compositions'],
     });

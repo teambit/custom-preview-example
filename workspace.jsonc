@@ -38,12 +38,12 @@
     "packageManager": "teambit.dependencies/pnpm",
     "policy": {
       "dependencies": {
-        "@teambit/base-ui.layout.page-frame": "1.0.0",
-        "@teambit/preview.ui.component-preview": "0.0.412"
+        "@teambit/base-ui.layout.page-frame": "^1.0.2",
+        "@teambit/preview.ui.component-preview": "^1.0.0"
       },
       "peerDependencies": {
-        "@types/react": "17.0.14",
-        "@types/react-dom": "17.0.9",
+        "@types/react": "^17.0.67",
+        "@types/react-dom": "^17.0.21",
         "react": "17.0.2",
         "react-dom": "17.0.2"
       }
@@ -53,8 +53,10 @@
       "**/*.spec.ts"
     ],
     "strictPeerDependencies": true,
-    "installFromBitDevRegistry": true,
-    "savePrefix": ""
+    "savePrefix": "",
+    "nodeLinker": "hoisted",
+    "rootComponents": true,
+    "linkCoreAspects": true
   },
   /**
    * ----------------------------- *

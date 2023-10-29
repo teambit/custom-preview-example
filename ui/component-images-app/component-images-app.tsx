@@ -1,10 +1,9 @@
 import React from 'react';
-import type { CustomPreviewTemplateProps } from '@teambit/teaching.extensions.component-images';
 import { wideColumn } from '@teambit/base-ui.layout.page-frame';
 
 import styles from './preview-images.module.scss';
 
-export function ComponentImagesApp(props: CustomPreviewTemplateProps) {
+export function ComponentImagesApp(props: any) {
   return (
     <div className={wideColumn + ' ' + styles.imagesPreviewApp}>
       <h2>Images</h2>

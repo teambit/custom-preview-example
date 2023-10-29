@@ -13,7 +13,7 @@ export class ComponentImagesUI {
     // register menu tab in component page
     componentUI.registerNavigation({ href: COMPONENT_IMAGES_SUBPATH, children: COMPONENT_IMAGES_TAB_NAME }, 100);
     // register a page under the component page
-    componentUI.registerRoute({ path: COMPONENT_IMAGES_SUBPATH, children: <ComponentImagesPage /> });
+    componentUI.registerRoute([{ path: COMPONENT_IMAGES_SUBPATH, element: <ComponentImagesPage /> }]);
 
     return new ComponentImagesUI();
   }

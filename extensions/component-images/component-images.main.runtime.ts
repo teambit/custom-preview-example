@@ -1,5 +1,5 @@
 import { MainRuntime } from '@teambit/cli';
-import { PreviewAspect, PreviewMain } from '@teambit/preview';
+import { PreviewAspect, PreviewDefinition, PreviewMain } from '@teambit/preview';
 import { Component, ComponentMap } from '@teambit/component';
 import { DevFilesAspect, DevFilesMain } from '@teambit/dev-files';
 
@@ -32,7 +32,7 @@ export class ComponentImagesMain {
   }
 
   /** list files to be bundled in the preview */
-  private getModuleMap = async (components: Component[]) => this.selectComponentImages(components);
+  getModuleMap = async (components: Component[]) => this.selectComponentImages(components);
 
   static runtime = MainRuntime;
   static dependencies = [PreviewAspect, DevFilesAspect];
@@ -40,21 +40,20 @@ export class ComponentImagesMain {
     const customPreviewMain = new ComponentImagesMain();
 
     // add new preview
-    previewMain.registerDefinition({
-      // name of the link file
-      // can be found at node_modules/.cache/bit/teambit.preview/.../
-      prefix: COMPONENT_IMAGES_PREVIEW_ID,
-      // use arrow functions, or .bind() the functions to the instance
-      getModuleMap: customPreviewMain.getModuleMap,
-      // bundles the path to the preview app
-      renderTemplatePath: async function (/* context */) {
-        // could also get it from `context.env`, etc
-        return require.resolve('@teambit/teaching.component-images-app');
-      },
-    });
+    // previewMain.registerDefinition({
+    //   // name of the link file
+    //   // can be found at node_modules/.cache/bit/teambit.preview/.../
+    //   prefix: COMPONENT_IMAGES_PREVIEW_ID,
+    //   // use arrow functions, or .bind() the functions to the instance
+    //   getModuleMap: customPreviewMain.getModuleMap,
+    //   // bundles the path to the preview app
+    //   renderTemplatePath: async function (/* context */) {
+    //     // could also get it from `context.env`, etc
+    //     return require.resolve('@teambit/teaching.component-images-app');
+    //   },
+    // });
+    previewMain.registerDefinition(new DocsPreviewDefinition(customPreviewMain));
 
-    // claim dev files
-    // TODO - might support for regex
     devFilesMain.registerDevPattern([devFilePattern]);
 
     return customPreviewMain;
@@ -62,3 +61,32 @@ export class ComponentImagesMain {
 }
 
 ComponentImagesAspect.addRuntime(ComponentImagesMain);
+
+class DocsPreviewDefinition implements PreviewDefinition {
+  readonly prefix = COMPONENT_IMAGES_PREVIEW_ID;
+
+  constructor(
+    /**
+     * docs extension.
+     */
+    private images: ComponentImagesMain
+  ) {}
+
+  /**
+   * application root
+   */
+  async renderTemplatePath(): Promise<string | undefined> {
+    return require.resolve('@teambit/teaching.component-images-app');
+  }
+
+  async renderTemplatePathByEnv(): Promise<string | undefined> {
+    return require.resolve('@teambit/teaching.component-images-app');
+  }
+
+  /**
+   * files to load.
+   */
+  async getModuleMap(components: Component[]): Promise<ComponentMap<AbstractVinyl[]>> {
+    return this.images.getModuleMap(components);
+  }
+}
