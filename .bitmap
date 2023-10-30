@@ -15,7 +15,13 @@
         "version": "",
         "defaultScope": "teambit.teaching",
         "mainFile": "index.tsx",
-        "rootDir": "ui/component-images-app"
+        "rootDir": "ui/component-images-app",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
     },
     "example-component": {
         "name": "example-component",
@@ -23,7 +29,13 @@
         "version": "",
         "defaultScope": "teambit.teaching",
         "mainFile": "index.tsx",
-        "rootDir": "ui/example-component"
+        "rootDir": "ui/example-component",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
     },
     "extensions/component-images": {
         "name": "extensions/component-images",
@@ -33,7 +45,10 @@
         "mainFile": "index.ts",
         "rootDir": "extensions/component-images",
         "config": {
-            "teambit.react/react": "-"
+            "teambit.harmony/aspect": {},
+            "teambit.envs/envs": {
+                "env": "teambit.harmony/aspect"
+            }
         }
     },
     "$schema-version": "17.0.0"
