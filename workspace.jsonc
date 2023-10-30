@@ -54,7 +54,6 @@
     ],
     "strictPeerDependencies": true,
     "savePrefix": "",
-    "nodeLinker": "hoisted",
     "rootComponents": true,
     "linkCoreAspects": true
   },
